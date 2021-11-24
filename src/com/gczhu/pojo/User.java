@@ -1,9 +1,16 @@
 package com.gczhu.pojo;
 
+
+import org.apache.ibatis.type.Alias;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User {
     private Integer id;
     private String name;
-
+    private String gender;
+    private Date createTime;
     public Integer getId() {
         return id;
     }
@@ -20,11 +27,31 @@ public class User {
         this.name = name;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", createTime=" + new SimpleDateFormat("YYYY-mm-dd HH:mm:ss").format(createTime) +
                 '}';
     }
 }

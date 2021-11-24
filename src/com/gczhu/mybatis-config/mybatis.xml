@@ -3,8 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <environments default="development">
-        <environment id="development">
+    <!--settings设置会影响mybatis的行为，
+        设置时必须要清楚每个设置项是什么意思-->
+    <settings>
+
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--设置实体对象别名-->
+    <typeAliases>
+        <package name="com.gczhu.pojo"/>
+        <!--如果同一个包下面有相同的类，可使用@Alias("user")为类指定不同别名-->
+    </typeAliases>
+    <!--配置数据源和事务管理环境，使用default指定环境-->
+    <environments default="dev">
+        <environment id="dev">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
@@ -13,7 +26,21 @@
                 <property name="password" value="Root1234"/>
             </dataSource>
         </environment>
+        <environment id="test">
+            <transactionManager type=""></transactionManager>
+            <dataSource type=""></dataSource>
+        </environment>
     </environments>
+
+    <!--配置多个数据库厂商id的别名，在mapper文件语句标签中
+        使用别名，应用场景是实现多厂商数据库切换-->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle" />
+        <property name="MySQL" value="mysql" />
+    </databaseIdProvider>
+
     <mappers>
         <mapper resource="com/gczhu/mybatis-config/UserMapper.xml"/>
     </mappers>

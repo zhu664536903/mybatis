@@ -11,6 +11,17 @@ public class User {
     private String name;
     private String gender;
     private Date createTime;
+
+    public User() {
+    }
+
+    public User(Integer id, String name, String gender, Date createTime) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.createTime = createTime;
+    }
+
     public Integer getId() {
         return id;
     }

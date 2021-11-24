@@ -6,13 +6,20 @@
     <select id="selectList" resultType="user">
         select * from user
     </select>
+
     <!--优先匹配带数据库厂商id的语句-->
     <select id="selectList" resultType="user" databaseId="mysql">
         select * from user
     </select>
 
-    <select id="selectOne" resultType="user">
-        select * from user where id=#{id}
-    </select>
+    <!--    public void addUser(User user);-->
+    <insert id="addUser" parameterType="user">
+        insert into user (name,gender,create_time)
+        values(#{name},#{gender},#{createTime})
+    </insert>
 
+    <!--    public int updateUser(User user);-->
+    <update id="updateUser" parameterType="user">
+        update user set name=#{name},gender=#{gender} where id=#{id}
+    </update>
 </mapper>

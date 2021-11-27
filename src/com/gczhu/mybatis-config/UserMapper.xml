@@ -12,6 +12,7 @@
         select * from user
     </select>
 
+
     <!--    public void addUser(User user);-->
     <insert id="addUser" parameterType="user">
         insert into user (name,gender,create_time)

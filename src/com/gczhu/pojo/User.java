@@ -3,10 +3,13 @@ package com.gczhu.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import javax.annotation.Generated;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class User {
+
     private Integer id;
     private String name;
     private String gender;

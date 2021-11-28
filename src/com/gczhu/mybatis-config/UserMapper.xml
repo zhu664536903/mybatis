@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gczhu.mapper.UserMapper">
+
+
     <select id="selectList" resultType="user">
         select * from user
     </select>
@@ -10,6 +12,23 @@
     <!--优先匹配带数据库厂商id的语句-->
     <select id="selectList" resultType="user" databaseId="mysql">
         select * from user
+    </select>
+
+    <select id="selectListByDepartId" resultType="user">
+        select * from user where depart_id=#{departId}
+    </select>
+
+    <!--  一对一：单步查询结果集映射规则  -->
+    <resultMap id="dtoUserMapperRule" type="dtoUser">
+        <id column="id" property="id"/>
+        <result column="name" property="userName"/>
+        <!--   select引用查询,column="{id:depart_id,key=value}"传递map参数
+                fetchType:是否懒加载   -->
+        <association column="{id=depart_id}" property="department"  select="com.gczhu.mapper.DepartmentMapper.selectOneById" fetchType="lazy"/>
+
+    </resultMap>
+    <select id="selectOneDtoUserbyId" resultMap="dtoUserMapperRule">
+        select id,name,depart_id from user where id=#{id}
     </select>
 
 

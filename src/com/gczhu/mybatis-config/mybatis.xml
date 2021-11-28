@@ -8,11 +8,13 @@
     <settings>
 
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
 
     <!--设置实体对象别名-->
     <typeAliases>
         <package name="com.gczhu.pojo"/>
+        <package name="com.gczhu.dto"/>
         <!--如果同一个包下面有相同的类，可使用@Alias("user")为类指定不同别名-->
     </typeAliases>
     <!--配置数据源和事务管理环境，使用default指定环境-->
@@ -44,5 +46,6 @@
 
     <mappers>
         <mapper resource="com/gczhu/mybatis-config/UserMapper.xml"/>
+        <mapper resource="com/gczhu/mybatis-config/DepartmentMapper.xml"/>
     </mappers>
 </configuration>
